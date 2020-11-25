@@ -1,0 +1,14 @@
+build/
+
+#Gradle
+.gradle/
+log/
+*.log
+api/log/
+
+#IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
