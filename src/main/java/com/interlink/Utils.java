@@ -2,10 +2,12 @@ package com.interlink;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -27,6 +29,14 @@ public final class Utils {
                 .withSkipLines(1)
                 .build();
         return reader.readAll();
+    }
+
+    public static void buildCSV(List<String> headers, List<List<String>> content) throws IOException {
+        CSVWriter writer = new CSVWriter(new FileWriter("new_acme_worksheet.csv"), CSVWriter.DEFAULT_SEPARATOR
+                , CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+        writer.writeNext(headers.toArray(new String[0]));
+        content.forEach(e -> writer.writeNext(e.toArray(new String[0])));
+        writer.close();
     }
 
     public static LocalDate parseDate(String s) {
