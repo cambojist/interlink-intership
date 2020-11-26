@@ -9,7 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public final class Utils {
@@ -24,5 +27,10 @@ public final class Utils {
                 .withSkipLines(1)
                 .build();
         return reader.readAll();
+    }
+
+    public static LocalDate parseDate(String s) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.US);
+        return LocalDate.parse(s, formatter);
     }
 }
